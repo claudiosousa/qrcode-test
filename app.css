@@ -27,6 +27,13 @@ body {
     border-radius: 15px;
 }
 
+
+@media (prefers-color-scheme: dark) {
+    #qrcode_container {
+        background-color: white;
+    }
+}
+
 #reload_code {
     padding: 15px;
 }

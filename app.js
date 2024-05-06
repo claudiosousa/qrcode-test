@@ -1,9 +1,9 @@
-const MAX_QRCODE_VALIDITY_MINUTES = 1; //1m
-//const MAX_QRCODE_VALIDITY_MINUTES = 8 * 60; // 8h
+//const MAX_QRCODE_VALIDITY_MINUTES = 1; //1m
+const MAX_QRCODE_VALIDITY_MINUTES = 8 * 60; // 8h
 const QRCODE_SIZE = 200;
 
 const check_age_and_generate_qrcode = () => {
-    const [, last_qrcode_age_minutes] = get_last_qrcode_and_age_minutes();
+    const [, , last_qrcode_age_minutes] = get_last_qrcode_and_age_minutes();
     const last_qrcode_still_valid = last_qrcode_age_minutes <= MAX_QRCODE_VALIDITY_MINUTES;
     if (!last_qrcode_still_valid || confirm("QR Code still valid!\nAre you sure you want to generate a new one?"))
         generate_qrcode();
@@ -12,22 +12,21 @@ const check_age_and_generate_qrcode = () => {
 const qrcode = new QRCode(qrcode_container, {
     width: QRCODE_SIZE,
     height: QRCODE_SIZE,
-    text: "http://jindo.dev.naver.com/collie",
     colorDark: "#000000",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
 });
 
-const set_qrcode = new_qrcode => {
+const set_qrcode = (new_qrcode, new_qrcode_number) => {
     qrcode.clear();
     qrcode.makeCode(new_qrcode);
-    code_id.innerText = new_qrcode;
-    save_qr_code(new_qrcode);
+    code_id.innerText = new_qrcode_number;
+    save_qr_code(new_qrcode, new_qrcode_number);
 }
 
 const generate_qrcode = () => {
-    const new_qr_code = generate_qrcode_number();
-    set_qrcode(new_qr_code);
+    const [new_qr_code, new_qrcode_number] = generate_qrcode_number();
+    set_qrcode(new_qr_code, new_qrcode_number);
     show_qrcode_age(0);
 }
 
@@ -55,7 +54,7 @@ const generate_qrcode_number = () => {
         end_date = "20601231",
         post_date = "346653621"
 
-    return qrnumber + pre_date + start_date + end_date + post_date;
+    return [qrnumber + pre_date + start_date + end_date + post_date, qrnumber];
 }
 
 const show_qrcode_age = qrcode_age_minutes => {
@@ -71,26 +70,28 @@ const show_qrcode_age = qrcode_age_minutes => {
 }
 
 const load_or_generate_qrcode = () => {
-    const [last_qrcode, last_qrcode_age_minutes] = get_last_qrcode_and_age_minutes();
+    const [last_qrcode, last_qrcode_number, last_qrcode_age_minutes] = get_last_qrcode_and_age_minutes();
     if (last_qrcode_age_minutes > MAX_QRCODE_VALIDITY_MINUTES) {
         generate_qrcode();
     }
     else {
-        set_qrcode(last_qrcode)
+        set_qrcode(last_qrcode, last_qrcode_number)
         show_qrcode_age(last_qrcode_age_minutes);
     }
 }
 
-const save_qr_code = qrcode => {
+const save_qr_code = (qrcode, qrcode_number) => {
     localStorage.setItem("last_qrcode", qrcode);
+    localStorage.setItem("last_qrcode_number", qrcode_number);
     localStorage.setItem("last_qrcode_time", Date.now());
 }
 
 const get_last_qrcode_and_age_minutes = () => {
     const last_qrcode = localStorage.getItem("last_qrcode")
     const last_qrcode_time = parseInt(localStorage.getItem("last_qrcode_time"));
+    const last_qrcode_number = localStorage.getItem("last_qrcode_number")
     const last_qrcode_age_minutes = (Date.now() - last_qrcode_time) / (1000 * 60);
-    return [last_qrcode, last_qrcode_age_minutes]
+    return [last_qrcode, last_qrcode_number, last_qrcode_age_minutes]
 }
 
 reload_code.onclick = check_age_and_generate_qrcode;
