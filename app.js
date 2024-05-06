@@ -1,13 +1,6 @@
-//const MAX_QRCODE_VALIDITY_MINUTES = 1 / 6; //10s
-const MAX_QRCODE_VALIDITY_MINUTES = 8 * 60; // 8h
-const INITIAL_QR_NUMBER = "";
+const MAX_QRCODE_VALIDITY_MINUTES = 1; //1m
+//const MAX_QRCODE_VALIDITY_MINUTES = 8 * 60; // 8h
 const QRCODE_SIZE = 200;
-
-const set_qrcode = qrcode => {
-    code_id.innerText = qrcode;
-    save_qr_code(qrcode);
-}
-
 
 const check_age_and_generate_qrcode = () => {
     const [, last_qrcode_age_minutes] = get_last_qrcode_and_age_minutes();
@@ -24,6 +17,13 @@ const qrcode = new QRCode(qrcode_container, {
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
 });
+
+const set_qrcode = new_qrcode => {
+    qrcode.clear();
+    qrcode.makeCode(new_qrcode);
+    code_id.innerText = new_qrcode;
+    save_qr_code(new_qrcode);
+}
 
 const generate_qrcode = () => {
     const new_qr_code = generate_qrcode_number();
