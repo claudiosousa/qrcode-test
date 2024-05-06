@@ -1,6 +1,6 @@
-const MAX_QRCODE_VALIDITY_MINUTES = 1 / 6; //10s
-//const MAX_QRCODE_VALIDITY_MINUTES = 8 * 60;
-
+//const MAX_QRCODE_VALIDITY_MINUTES = 1 / 6; //10s
+const MAX_QRCODE_VALIDITY_MINUTES = 8 * 60; // 8h
+const INITIAL_QR_NUMBER = "";
 const QRCODE_SIZE = 200;
 
 const set_qrcode = qrcode => {
@@ -46,7 +46,16 @@ const generate_qrcode_number = () => {
     Part pre-date	0904532
     Part post-date	346653621
     Ex:	            9001211909045322022101420601231346653621
-*/
+    */
+
+    // qrnumber: 8 digits number changing every minute
+    const qrnumber = (Math.floor(Date.now() / 1000 / 60) + "").padStart(8, "0"),
+        pre_date = "0904532",
+        start_date = "20221014",
+        end_date = "20601231",
+        post_date = "346653621"
+
+    return qrnumber + pre_date + start_date + end_date + post_date;
 }
 
 const show_qrcode_age = qrcode_age_minutes => {
