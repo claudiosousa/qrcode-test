@@ -1,0 +1,16 @@
+html {
+    background-color: black;
+    color: white;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#app {
+    display: flex;
+    /* height: 200px;
+    align-items: center; */
+    justify-content: center;
+}
