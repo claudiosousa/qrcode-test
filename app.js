@@ -71,7 +71,7 @@ const show_qrcode_age = qrcode_age_minutes => {
 
 const load_or_generate_qrcode = () => {
     const [last_qrcode, last_qrcode_number, last_qrcode_age_minutes] = get_last_qrcode_and_age_minutes();
-    if (last_qrcode_age_minutes >= MAX_QRCODE_VALIDITY_MINUTES) {
+    if (last_qrcode_age_minutes <= MAX_QRCODE_VALIDITY_MINUTES) {
         set_qrcode(last_qrcode, last_qrcode_number)
         show_qrcode_age(last_qrcode_age_minutes);
     }
