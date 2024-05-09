@@ -5,16 +5,18 @@ const QrCode = {
             <div class="qrcode_container"></div>
             <span class="qrnumber">{{qrnumber}}</span>
         </div>`,
-    renderQrCode() {
-        this.qrcode_value = generateQrCodeFromNumber(this.qrnumber);
-        this.qrcode = new QRCode(this.$el.firstChild, {
-            text: this.qrcode_value,
-            width: 200,
-            height: 200,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.L
-        });
+    methods: {
+        renderQrCode() {
+            this.qrcode_value = generateQrCodeFromNumber(this.qrnumber);
+            this.qrcode = new QRCode(this.$el.firstChild, {
+                text: this.qrcode_value,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.L
+            });
+        }
     },
     updated() {
         this.qrcode.clear();
@@ -22,7 +24,7 @@ const QrCode = {
         this.qrcode.makeCode(this.qrcode_value);
     },
     mounted() {
-        this.$options.renderQrCode.apply(this);
+        this.renderQrCode();
     }
 }
 

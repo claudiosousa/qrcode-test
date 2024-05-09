@@ -17,6 +17,7 @@ createApp({
                 qrcode_numbers.push(i + this.first_qr_code);
             }
             this.qrcode_numbers = qrcode_numbers;
+            document.title = `Batch QR codes ${this.first_qr_code} - ${this.first_qr_code + this.nb_qr_codes}`;
             this.qr_codes_rendered = true;
         }
     },

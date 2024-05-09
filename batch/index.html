@@ -19,10 +19,10 @@
 <body>
     <div id="app" class="vertical_flex">
         <div v-show="!qr_codes_rendered" class="vertical_flex">
-            <h1>QR codes to generate</h1>
+            <h1>Batch QR codes</h1>
             <label for="first_qr_code">Initial QR code</label>
             <input id="first_qr_code" v-model="first_qr_code" placeholder="first qr code" />
-            <label for="nb_qr_codes">QR codes to generatw</label>
+            <label for="nb_qr_codes">QR codes to generate</label>
             <input id="nb_qr_codes" v-model="nb_qr_codes" placeholder="#qr code" />
             <button @click="generateQrCodeNumbers">
                 Generate

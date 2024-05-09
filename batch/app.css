@@ -19,6 +19,10 @@ body {
     .qrcode_component {
         page-break-after: always
     }
+
+    .noPrint {
+        display: none;
+    }
 }
 
 .qrcode_component {
