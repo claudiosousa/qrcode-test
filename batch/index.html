@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Batch QR-Code app</title>
+    <meta name="description" content="Batch QR Code application">
+    <link rel="icon" type="image/png" href="../images/batchprocess.svg" />
+    <meta http-equiv="X-UA-Compatible" content="edge,chrome=1" />
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="app.css">
+    <script type="text/javascript" src="../js/qrcode.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript" src="../js/QrCode.js"></script>
+</head>
+
+<body>
+    <div id="app" class="vertical_flex">
+        <div v-show="!qr_codes_rendered" class="vertical_flex">
+            <h1>QR codes to generate</h1>
+            <label for="first_qr_code">Initial QR code</label>
+            <input id="first_qr_code" v-model="first_qr_code" placeholder="first qr code" />
+            <label for="nb_qr_codes">QR codes to generatw</label>
+            <input id="nb_qr_codes" v-model="nb_qr_codes" placeholder="#qr code" />
+            <button @click="generateQrCodeNumbers">
+                Generate
+            </button>
+        </div>
+
+        <template v-for="qrcode_number in qrcode_numbers">
+            <qr-code :qrnumber="qrcode_number"></qr-code>
+        </template>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
