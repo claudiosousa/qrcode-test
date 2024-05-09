@@ -26,17 +26,18 @@ body {
 }
 
 .qrcode_component {
-    width: 200px;
-    padding: 15px 15px 5px 15px;
+    width: 128px;
+    padding: 10px 10px 3px 10px;
     border-radius: 15px;
     border: 1px solid lightgray;
-    margin: 20px;
+    margin: 10px;
 
 }
 
 .qrnumber {
     display: block;
-    margin: 10px 15px 0 15px;
+    margin: 7px 0 0 0;
     text-align: center;
     color: #333;
+    font-size: 8px;
 }
