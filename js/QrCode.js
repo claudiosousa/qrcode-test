@@ -10,8 +10,8 @@ const QrCode = {
             this.qrcode_value = generateQrCodeFromNumber(this.qrnumber);
             this.qrcode = new QRCode(this.$el.firstChild, {
                 text: this.qrcode_value,
-                width: 128,
-                height: 128,
+                width: 170,
+                height: 170,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.L
