@@ -28,7 +28,7 @@ body {
 .qrcode_component {
     padding: 10px 10px 3px 10px;
     border-radius: 15px;
-    border: 1px solid lightgray;
+    border: 2px solid #333;
     margin: 5px;
 
 }
