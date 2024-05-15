@@ -1,6 +1,6 @@
 //const MAX_QRCODE_VALIDITY_MINUTES = 1; //1m
 const MAX_QRCODE_VALIDITY_MINUTES = 8 * 60; // 8h
-const QRCODE_SIZE = 200;
+const QRCODE_SIZE = 160;
 
 const check_age_and_generate_qrcode = () => {
     const [, , last_qrcode_age_minutes] = get_last_qrcode_and_age_minutes();
