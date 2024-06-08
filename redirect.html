@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <title>QR-Code redirect</title>
-    <meta http-equiv="refresh" content="0; URL=https://drive.google.com/file/d/1uMVfRkPkpCnsSNjcxeCVsWkHLD8zv1Wt/view?usp=sharing" />
-    <link rel="icon" type="image/png" href="images/qr-code.png" />
-    <meta name="description" content="QR Code application">
+<meta charset="UTF-8">
+<title>QR-Code redirect</title>
+<link rel="icon" type="image/png" href="images/qr-code.png" />
+<meta name="description" content="QR Code application">
 </head>
+<script>
+    const children = {
+        'theo': 'https://drive.google.com/file/d/19KA3AkNNAiravGzSS4YfLd1_GqHHqRX8/view?usp=sharing',
+        'sophie': 'https://drive.google.com/file/d/1TY8hMPtsxs6Erg5oYb6-31BOx6JDRE1E/view?usp=sharing',
+        'mathilde': 'https://drive.google.com/file/d/1adhDHHfow75Mw27i6Ky5vXDtjg_wToMO/view?usp=sharing',
+        'arthur': 'https://drive.google.com/file/d/1alUSW4TxoS9gVj4aag1H0CrDY_KlAFEp/view?usp=sharing',
+    };
+
+    const childName = () => {
+        const params = new URL(location.href).searchParams;
+        return params.get('child');
+    }
+
+    console.log(childName());
+    location.replace(children[childName()])
+</script>
+
+</html>
